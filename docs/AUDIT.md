@@ -25,6 +25,7 @@ docs/PRIVACY.md §2 and §3a.
 | `dlq_discard` | An operator permanently discards a dead-lettered webhook; it is never retried again. Records the actor (the key id) and the dead-letter and message ids, so the decision to throw a notification away can be reconstructed and attributed. |
 | `auth_failure` | Authentication probing/brute force. Records the reason code and the pseudonymised source identifier — never the presented key material, and never the raw source address. |
 | `rate_limit_rejected` | Abuse signal and evidence trail for callers hitting ceilings, including `fee_ceiling_exceeded` and store-unavailable refusals. |
+| `client_address_unresolved` | A request had neither a resolved address nor a socket peer, so it was rejected before rate limiting. Records the safe route and rejection reason; its actor is `unknown`. |
 | `rpc_unreachable` | An open circuit breaker caused a caller-visible failure. Distinguishes "our dependency died" from "your payment was rejected" in the trail. |
 
 ### What is deliberately not audited

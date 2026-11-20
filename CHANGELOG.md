@@ -154,6 +154,10 @@ pinned.
 
 ### Fixed
 
+- Empty client addresses no longer collapse into one rate-limit bucket: the
+  transport falls back to the socket peer, or returns HTTP 400 with reason
+  `client_address_unresolved` and audits the rejection when neither address is
+  available (#670).
 - In `docs/AUDIT.md`, removed accidental duplicate `## Proposed Scope` heading, restoring valid markdown hierarchy and unambiguous anchor targets (#775).
 - In `eval/runner.js`, corrected nDCG@K calculation by truncating sorted ideal relevance scores to top-K (`actualScores.length`) so perfect top-K rankings against larger judgment sets yield nDCG = 1.0 without artificial IDCG denominator inflation (#774).
 - A pending idempotency claim now expires (#711): `MemoryIdempotencyStore.begin()`
